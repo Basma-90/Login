@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: "Times New Roman";
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+
+        #buttonContainer {
+            text-align: center;
+            border: 2px solid #3498db;
+            border-radius: 15px;
+            padding: 60px;
+            background-color: #ffffff;
+        }
+
+        h1, p, button, .alert {
+            text-align: center;
+            font-size: 20px;
+        }
+
+        h1 {
+            font-size: 50px;
+        }
+
+        button {
+            color: #ffffff;
+            border-radius: 10px;
+            border: 2px solid #3498db; /* Change border color */
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #3498db; /* Change button color */
+        }
+
+        button a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        button a:hover, .alert a:hover {
+            color: #ff0000;
+        }
+
+        .alert {
+            color: #ffffff;
+            border-radius: 10px;
+            border: 2px solid #ff0000;
+            padding: 10px 20px;
+            margin: 10px;
+        }
+
+        strong {
+            color: #ff0000;
+        }
+
+        .hidden {
+            display: none;
+        }
+        h2{
+            color: #3498db;
+
+        }
+    </style>
+</head>
+<body> 
+    {% for message in messages %}
+    <div id="alertDiv" class="alert alert-{{ message.tags }} alert-dismissible fade show">
+        <strong>{{ message }}</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" onclick="hideAlert()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {% endfor %}
+    <div id="buttonContainer">
+        <h2>Home...</h2>
+        {% if user.is_authenticated %}
+        <h3>Welcome {{ f_name }}</h3>
+        <button type="submit"><a href="/logout">Log Out</a></button>
+        {% else %}
+        <button type="submit"><a href="/signup">Sign Up</a></button>
+        <button type="submit"><a href="/login">Log In</a></button>
+        {% endif %}
+    </div>
+
+    <script defer>
+        function hideAlert() {
+            var alertDiv = document.getElementById("alertDiv");
+            alertDiv.classList.add("hidden");
+        }
+    </script>
+</body>
+</html>

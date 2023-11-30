@@ -1,0 +1,156 @@
+<!-- myapp/templates/myapp/my_template.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Template</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #eee;
+
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: serif;
+        }
+        .container {
+            width: 800px;
+            margin: 0 auto;
+        }
+        .container > header {
+            background-color: #ddd;
+            padding: 10px;
+        }
+        .container > header > h1 {
+            margin: 0;
+        }
+        .container > section {
+            padding: 10px;
+        }
+        .container > footer {
+            background-color: #ddd;
+            padding: 10px;
+        }
+        label{
+            display: block;
+
+        }
+        input{
+            display: block;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #ddd;
+        }
+        input[type="submit"]{
+            background-color: #ddd;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 5px #ddd;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover{
+            background-color: #ccc;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 5px #ccc;
+        }
+        form{
+            width: 300px;
+            height: 400px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #ddd;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: 100px;
+        }
+        label{
+            color: #555;
+            font-size: 14px;
+
+        }
+        input[type="text"], input[type="email"], input[type="password"]{
+            width: 100%;
+            height: 30px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px #ddd;
+        }
+        input[type="submit"]{
+            width: 100%;
+            height: 30px;
+            background-color: #ddd;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 5px #ddd;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover{
+            background-color: #ccc;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 5px #ccc;
+        }
+        .messages {
+    list-style: none;
+    margin: 1em 0;
+    padding: 0;
+}
+li.success {
+    color: green;
+
+}
+li.error
+{
+    color: red;
+}
+
+
+
+
+    </style>
+</head>
+<body>
+    {% if messages %}
+    <ul class="messages">
+      {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+    <form action="{% url 'signup' %}" method="POST">
+        {% csrf_token %}
+        <label for="username">Username</label>
+        <input type="text" name="username" id="username" placeholder="Username ..." required>
+        
+        <label for="first_name">First Name</label>
+        <input type="text" name="first_name" id="first_name" placeholder="First Name..." required>
+
+        <label for="last_name">Last Name</label>
+        <input type="text" name="last_name" id="last_name" placeholder="Last Name..." required>
+        
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email..." required>
+        
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password..." required>    
+        
+
+        <label for="confirm_password">Confirm Password</label>
+<input type="password" name="confirmpassword" id="confirm_password" placeholder="Confirm Password..." required>
+
+
+        <button type="submit">Submit</button>
+    </form>
+
+    
+</body>
+</html>
